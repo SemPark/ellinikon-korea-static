@@ -60,3 +60,10 @@
 .introducing .slide-line:nth-child(2){transition-delay:.09s}
 .ambition .slide-line:nth-child(2){transition-delay:.08s}
 .ambition .slide-line{line-height:1.14}
+.destination-heading{overflow:hidden}
+.destination-heading h2 .slide-line{display:block;will-change:transform,opacity}
+.destination-heading h2 .slide-line[data-reveal]{opacity:0;transition:opacity .58s ease,transform .92s cubic-bezier(.16,1,.3,1)}
+.destination-heading h2 .slide-line.from-left[data-reveal]{transform:translateX(-18vw)}
+.destination-heading h2 .slide-line.from-right[data-reveal]{transform:translateX(18vw);transition-delay:.08s}
+.destination-heading h2 .slide-line.in{opacity:1;transform:translateX(0)!important}
+.destination-list{width:420px}
