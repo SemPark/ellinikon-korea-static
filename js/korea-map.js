@@ -126,7 +126,7 @@ scene.add(ground);
 function geoToMap(lat, lon) {
   return new THREE.Vector3(
     -0.58 + ((lon - 126.1) / 3.5) * 1.2,
-    EXTRUDE_H / 2 + 0.07,
+    EXTRUDE_H / 2 + 0.12,
     -(-0.6 + ((lat - 34.5) / 4.2) * 1.48),
   );
 }
