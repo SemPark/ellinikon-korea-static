@@ -47,3 +47,16 @@
 /* Map tuning: keep the WebGL map below the project pills and let the gray stage show through. */
 .map-canvas{top:92px}
 @media(max-width:900px){.map-canvas{top:116px}}
+
+/* Intro copy motion: alternating horizontal slide-in lines. */
+.world-copy{overflow:hidden}
+.world-copy .slide-line{display:block;will-change:transform,opacity}
+.world-copy .slide-line[data-reveal]{opacity:0;transition:opacity .58s ease,transform .92s cubic-bezier(.16,1,.3,1)}
+.world-copy .slide-line.from-left[data-reveal]{transform:translateX(-18vw)}
+.world-copy .slide-line.from-right[data-reveal]{transform:translateX(18vw)}
+.world-copy .slide-line.in{opacity:1;transform:translateX(0)!important}
+.world-lines .slide-line:nth-child(2){transition-delay:.07s}
+.world-lines .slide-line:nth-child(3){transition-delay:.14s}
+.introducing .slide-line:nth-child(2){transition-delay:.09s}
+.ambition .slide-line:nth-child(2){transition-delay:.08s}
+.ambition .slide-line{line-height:1.14}
