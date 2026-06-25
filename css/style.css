@@ -43,3 +43,7 @@
 .map-card{opacity:0;pointer-events:none;transform:translate(120%,-42%);transition:opacity .35s ease,transform .62s cubic-bezier(.16,1,.3,1);animation:none}
 .map-card.is-active{opacity:1;pointer-events:auto;transform:translate(0,-42%)}
 @media(max-width:900px){.map-card{transform:translateX(120%)}.map-card.is-active{transform:translateX(0)}}
+
+/* Map tuning: keep the WebGL map below the project pills and let the gray stage show through. */
+.map-canvas{top:92px}
+@media(max-width:900px){.map-canvas{top:116px}}

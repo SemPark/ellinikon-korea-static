@@ -2,6 +2,7 @@ const koreaShapes = [[[0.27451, 0.92582], [0.23708, 0.85735], [0.1533, 0.82454],
 
 const mapRoot = document.getElementById("map");
 const canvas = document.getElementById("koreaMapCanvas");
+const canvasStage = canvas.parentElement;
 const pills = document.getElementById("projectPills");
 const panel = document.getElementById("projectPanel");
 const panelImage = document.getElementById("panelImage");
@@ -13,8 +14,8 @@ const panelUnits = document.getElementById("panelUnits");
 const panelCompletion = document.getElementById("panelCompletion");
 const panelNote = document.getElementById("panelNote");
 
-let width = mapRoot.clientWidth;
-let height = mapRoot.clientHeight;
+let width = canvasStage.clientWidth;
+let height = canvasStage.clientHeight;
 let aspect = width / height;
 
 const renderer = new THREE.WebGLRenderer({
@@ -131,8 +132,11 @@ function geoToMap(lat, lon) {
 }
 
 const pinFactory = createPinMeshFactory(THREE);
-const grayColor = new THREE.Color(0x202020);
-const redColor = new THREE.Color(0x8f0f09);
+const grayColor = new THREE.Color(0x808080);
+const redColor = new THREE.Color(0xe03428);
+const PIN_ROTATION_X = 0.8008;
+const PIN_ROTATION_Y = -0.26;
+const PIN_ROTATION_Z = 0;
 const pinObjects = [];
 const clickablePinMeshes = [];
 
@@ -147,8 +151,7 @@ projectPins.forEach((project) => {
   });
 
   pin.position.copy(geoToMap(project.lat, project.lon));
-  pin.rotation.x = 0.8008;
-  pin.rotation.y = -0.26;
+  pin.rotation.set(PIN_ROTATION_X, PIN_ROTATION_Y, PIN_ROTATION_Z);
   pin.userData.basePosition = pin.position.clone();
   pin.userData.baseScale = 0.044;
   pin.userData.targetScale = 0.044;
@@ -183,7 +186,7 @@ function updateCamera() {
   camera.updateProjectionMatrix();
 
   pinObjects.forEach((pin) => {
-    pin.rotation.y = -theta;
+    pin.rotation.set(PIN_ROTATION_X, PIN_ROTATION_Y, PIN_ROTATION_Z);
   });
 }
 updateCamera();
@@ -237,6 +240,22 @@ function selectProject(id) {
   updatePanel(project);
 }
 
+function clearProjectSelection() {
+  selectedId = null;
+  targetSceneShift = 0;
+  mapRoot.classList.remove("has-selection");
+  panel.classList.remove("is-active");
+
+  pinObjects.forEach((pin) => {
+    pin.userData.targetColor.copy(grayColor);
+    pin.userData.targetScale = pin.userData.baseScale;
+  });
+
+  pills.querySelectorAll("button").forEach((button) => {
+    button.classList.remove("active");
+  });
+}
+
 window.selectProjectById = selectProject;
 
 const raycaster = new THREE.Raycaster();
@@ -267,41 +286,12 @@ canvas.addEventListener("pointerup", (event) => {
   const hit = raycaster.intersectObjects(clickablePinMeshes, false)[0];
   const pin = hit?.object?.userData?.parentPin;
   if (pin?.userData?.id) selectProject(pin.userData.id);
-});
-
-let dragging = false;
-let previousX = 0;
-let previousY = 0;
-
-canvas.addEventListener("pointerdown", (event) => {
-  dragging = true;
-  previousX = event.clientX;
-  previousY = event.clientY;
-  canvas.setPointerCapture?.(event.pointerId);
-});
-
-canvas.addEventListener("pointermove", (event) => {
-  if (!dragging) return;
-  theta += (event.clientX - previousX) * 0.007;
-  phi = Math.max(
-    0.15,
-    Math.min(1.5, phi + (event.clientY - previousY) * 0.005),
-  );
-  previousX = event.clientX;
-  previousY = event.clientY;
-  updateCamera();
-});
-
-canvas.addEventListener("pointerup", () => {
-  dragging = false;
-});
-canvas.addEventListener("pointercancel", () => {
-  dragging = false;
+  else clearProjectSelection();
 });
 
 window.addEventListener("resize", () => {
-  width = mapRoot.clientWidth;
-  height = mapRoot.clientHeight;
+  width = canvasStage.clientWidth;
+  height = canvasStage.clientHeight;
   aspect = width / height;
   renderer.setSize(width, height, false);
   updateCamera();
