@@ -329,9 +329,29 @@ let lastScroll = window.scrollY;
 let featureIndex = 0;
 const worldCopy = document.querySelector(".world-copy");
 let worldCopyLastReplay = 0;
+const lenis =
+  !reduceMotion && window.Lenis
+    ? new Lenis({
+        smoothWheel: true,
+        syncTouch: false,
+        lerp: 0.105,
+        wheelMultiplier: 0.88,
+        touchMultiplier: 1.05,
+        prevent: (node) => node.closest?.(".map-pills,.map-card"),
+      })
+    : null;
+
+function lenisRaf(time) {
+  lenis?.raf(time);
+  requestAnimationFrame(lenisRaf);
+}
+
+if (lenis) requestAnimationFrame(lenisRaf);
 
 function jumpTo(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const target = document.getElementById(id);
+  if (target && lenis) lenis.scrollTo(target, { duration: 1.05 });
+  else target?.scrollIntoView({ behavior: "smooth" });
   navigation.classList.remove("open");
   hamburger.textContent = "MENU";
 }
@@ -402,48 +422,6 @@ document.querySelectorAll("[data-feature]").forEach((button) => {
   button.addEventListener("click", () => setFeature(Number(button.dataset.feature)));
 });
 
-let smoothFrame = 0;
-let smoothTarget = window.scrollY;
-let smoothCurrent = window.scrollY;
-const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-
-function smoothStep() {
-  smoothCurrent += (smoothTarget - smoothCurrent) * 0.38;
-  if (Math.abs(smoothTarget - smoothCurrent) < 0.8) {
-    smoothCurrent = smoothTarget;
-    window.scrollTo(0, smoothCurrent);
-    smoothFrame = 0;
-    return;
-  }
-  window.scrollTo(0, smoothCurrent);
-  smoothFrame = requestAnimationFrame(smoothStep);
-}
-
-function smoothBy(deltaY, deltaMode = 0) {
-  const liveY = window.scrollY;
-  if (!smoothFrame || Math.abs(liveY - smoothCurrent) > 80) {
-    smoothCurrent = liveY;
-    smoothTarget = liveY;
-  }
-  const unit = deltaMode === 1 ? 42 : deltaMode === 2 ? window.innerHeight : 1;
-  smoothTarget = Math.max(0, Math.min(maxScroll(), smoothTarget + deltaY * unit * 2.2));
-  smoothCurrent += (smoothTarget - smoothCurrent) * 0.72;
-  window.scrollTo(0, smoothCurrent);
-  if (!smoothFrame) smoothFrame = requestAnimationFrame(smoothStep);
-}
-
-if (!reduceMotion) {
-  window.addEventListener(
-    "wheel",
-    (event) => {
-      if (event.ctrlKey || event.metaKey || event.target.closest(".map-pills,.map-card")) return;
-      event.preventDefault();
-      smoothBy(event.deltaY, event.deltaMode);
-    },
-    { passive: false },
-  );
-}
-
 function updatePage() {
   const y = window.scrollY;
   const previous = lastScroll;
@@ -499,5 +477,6 @@ function updatePage() {
   }
 }
 
+lenis?.on("scroll", updatePage);
 window.addEventListener("scroll", updatePage, { passive: true });
 updatePage();
