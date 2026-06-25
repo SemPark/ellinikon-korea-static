@@ -1,6 +1,6 @@
-# THE IN PARTNERS — 3D Project Map
+# THE IN PARTNERS — One Page Website
 
-대한민국 3D 지도 위에 Three.js Mesh 핀을 표시하고 프로젝트 정보를 확인하는 정적 웹 프로젝트입니다.
+히어로 영상, 스크롤 애니메이션, 이미지 레일, 콘텐츠 섹션과 대한민국 3D 프로젝트 지도를 포함한 정적 원페이지 웹사이트입니다.
 
 ## 구조
 
@@ -14,6 +14,8 @@
 │  ├─ project-data.js
 │  └─ pin_mesh_factory.js
 └─ assets/
+   ├─ original/
+   └─ project-01.png ... project-12.png
 ```
 
 ## 로컬 실행
@@ -34,7 +36,8 @@ python3 -m http.server 8000
 
 ## 구현 원칙
 
-- WebGL renderer, scene, camera, canvas는 각각 하나만 사용합니다.
+- 전체 원페이지는 빌드 과정 없이 정적 HTML/CSS/JavaScript로 실행됩니다.
+- 3D 지도는 WebGL renderer, scene, camera, canvas를 각각 하나만 사용합니다.
 - 프로젝트 핀은 `project-data.js`의 `projectPins`에서 관리합니다.
 - 핀은 `pin_mesh_factory.js`가 생성한 Three.js Mesh를 `scene.add(pin)`으로 추가합니다.
 - 핀 선택은 Raycaster로 처리합니다.

@@ -3,44 +3,177 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#b8b8b8" />
-    <meta
-      name="description"
-      content="전국 주요 부동산 개발 프로젝트를 확인하는 더인파트너스 3D 프로젝트 지도"
-    />
-    <title>THE IN PARTNERS — 3D Project Map</title>
+    <meta name="theme-color" content="#063e62" />
+    <meta name="description" content="전국 주요 부동산 개발 프로젝트와 3D 지도를 한눈에 확인하는 더인파트너스 포트폴리오" />
+    <title>THE IN PARTNERS — Performance</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <main class="project-map" id="projectMap">
-      <div class="project-pills" id="projectPills" aria-label="프로젝트 목록"></div>
+    <header class="ell-header">
+      <button class="ell-logo" data-jump="top" aria-label="The Ellinikon 홈">
+        <img src="./assets/original/logo-white.svg" alt="The Ellinikon" />
+      </button>
+      <nav aria-label="Main navigation">
+        <button data-jump="story">ABOUT</button>
+        <button data-jump="story">PARADIGM CITY</button>
+        <button data-jump="destination">RESIDENTIAL</button>
+        <button data-jump="destination">SHOPPING</button>
+        <button data-jump="destination">VISIT NOW</button>
+        <button data-jump="news">COMMUNITIES</button>
+        <button data-jump="news">NEWS</button>
+      </nav>
+      <div class="header-tools">
+        <button>GR</button>
+        <button class="contact" data-jump="footer">CONTACT</button>
+        <button class="hamburger" type="button">MENU</button>
+      </div>
+    </header>
 
-      <canvas id="koreaMapCanvas" aria-label="대한민국 3D 프로젝트 지도"></canvas>
-
-      <aside class="project-panel" id="projectPanel" aria-live="polite">
-        <img id="panelImage" src="" alt="" />
-        <div class="project-panel__body">
-          <strong id="panelStatus"></strong>
-          <h1 id="panelTitle"></h1>
-          <p id="panelAddress"></p>
-          <dl>
-            <div>
-              <dt>연면적</dt>
-              <dd id="panelArea"></dd>
-            </div>
-            <div>
-              <dt>세대수</dt>
-              <dd id="panelUnits"></dd>
-            </div>
-            <div>
-              <dt>준공</dt>
-              <dd id="panelCompletion"></dd>
-            </div>
-          </dl>
-          <small id="panelNote"></small>
+    <main>
+      <section class="ell-hero" id="top">
+        <div class="hero-sticky">
+          <video autoplay muted loop playsinline poster="./assets/original/feature-03.jpg">
+            <source src="./assets/original/hero.mp4" type="video/mp4" />
+          </video>
+          <div class="hero-shade"></div>
+          <h1 class="hero-primary" aria-label="THE IN PARTNERS"><span>THE IN</span> <span>PARTNERS</span></h1>
+          <h2 class="hero-secondary">사업의 가능성을, 완성으로.</h2>
+          <button class="watch">WATCH FULL VIDEO <b>PLAY</b></button>
         </div>
-      </aside>
+      </section>
+
+      <section class="city-intro" id="story">
+        <h2 data-reveal>사업을 다시 <span>설계하고</span></h2>
+        <h2 data-reveal>신뢰를 다시 <span>세웁니다</span></h2>
+      </section>
+
+      <section class="image-rails" aria-label="The Ellinikon destinations">
+        <div class="rail rail-a">
+          <img src="./assets/original/t01.jpg" alt="" />
+          <img src="./assets/original/t02.jpg" alt="" />
+          <img src="./assets/original/t03.jpg" alt="" />
+          <img src="./assets/original/t04.jpg" alt="" />
+          <img src="./assets/original/t05.jpg" alt="" />
+        </div>
+        <div class="rail rail-b">
+          <img src="./assets/original/b01.jpg" alt="" />
+          <img src="./assets/original/b02.jpg" alt="" />
+          <img src="./assets/original/b03.jpg" alt="" />
+          <img src="./assets/original/b04.jpg" alt="" />
+          <img src="./assets/original/b05.jpg" alt="" />
+        </div>
+      </section>
+
+      <section class="world-copy">
+        <div class="world-lines">
+          <p data-reveal><b>A world-class</b> destination</p>
+          <p data-reveal>A next-generation smart city</p>
+          <p data-reveal>on the <b>Athenian Riviera</b></p>
+        </div>
+        <div class="introducing" data-reveal>
+          <small>Introducing</small>
+          <strong>Τhe Ellinikon</strong>
+        </div>
+        <p class="ambition" data-reveal>The most <b>ambitious</b><br /><b>urban regeneration</b> project in<br />Europe</p>
+      </section>
+
+      <section class="korea-map-section" id="map">
+        <div class="map-canvas">
+          <canvas id="koreaMapCanvas" aria-label="대한민국 3D 프로젝트 지도"></canvas>
+        </div>
+        <div class="map-pills" id="projectPills" aria-label="프로젝트 목록"></div>
+        <article class="map-card" id="projectPanel" aria-live="polite">
+          <img id="panelImage" src="" alt="" />
+          <div>
+            <span id="panelStatus"></span>
+            <h3 id="panelTitle"></h3>
+            <p id="panelAddress"></p>
+            <dl>
+              <div><dt>연면적</dt><dd id="panelArea"></dd></div>
+              <div><dt>세대수</dt><dd id="panelUnits"></dd></div>
+              <div><dt>준공</dt><dd id="panelCompletion"></dd></div>
+            </dl>
+            <small id="panelNote"></small>
+          </div>
+        </article>
+      </section>
+
+      <section class="destination" id="destination">
+        <div class="destination-heading">
+          <h2 data-reveal>A one-of-a-kind<br />destination</h2>
+          <div class="destination-list">
+            <button class="active" data-destination="0">A CITY THAT WELCOMES ALL</button>
+            <button data-destination="1">THE IDEAL LOCATION</button>
+            <button data-destination="2">THE ESSENCE OF MEDITERRANEAN LIVING</button>
+            <button data-destination="3">A PLACE TO CALL YOUR OWN</button>
+          </div>
+        </div>
+        <div class="destination-visual">
+          <article class="active">
+            <img src="./assets/original/info-01.jpg" alt="" />
+            <div><h3>A CITY THAT WELCOMES ALL</h3><p>A world-leading destination designed to offer one-of-a-kind experiences to all.</p></div>
+          </article>
+          <article>
+            <img src="./assets/original/info-02.jpg" alt="" />
+            <div><h3>THE IDEAL LOCATION</h3><p>Only 20 minutes from the heart of Athens and 35 minutes from the international airport.</p></div>
+          </article>
+          <article>
+            <img src="./assets/original/info-03.jpg" alt="" />
+            <div><h3>THE ESSENCE OF MEDITERRANEAN LIVING</h3><p>More than 300 sunny days a year and a seamless blend of city energy and seaside calm.</p></div>
+          </article>
+          <article>
+            <img src="./assets/original/info-04.jpg" alt="" />
+            <div><h3>A PLACE TO CALL YOUR OWN</h3><p>A city designed for people: open, inviting, and instantly familiar.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature-slider">
+        <div class="feature-sticky">
+          <article class="active">
+            <img src="./assets/original/feature-01.jpg" alt="" />
+            <div class="feature-card"><span>01 <i></i> 03</span><h2>Find your new home at The Ellinikon</h2><button>EXPLORE THE RESIDENCES</button></div>
+          </article>
+          <article>
+            <img src="./assets/original/feature-02.jpg" alt="" />
+            <div class="feature-card"><span>02 <i></i> 03</span><h2>A new retail experience awaits</h2><button>SHOPPING DESTINATIONS</button></div>
+          </article>
+          <article>
+            <img src="./assets/original/feature-03.jpg" alt="" />
+            <div class="feature-card"><span>03 <i></i> 03</span><h2>Visit The Ellinikon today</h2><button>DISCOVER MORE</button></div>
+          </article>
+          <div class="feature-tabs">
+            <button class="active" data-feature="0">01</button>
+            <button data-feature="1">02</button>
+            <button data-feature="2">03</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="news" id="news">
+        <div class="news-title" data-reveal>
+          <span>WHAT'S ON</span>
+          <h2>A new way to<br />experience life</h2>
+        </div>
+        <div class="news-row">
+          <article><img src="./assets/original/info-01.jpg" alt="" /><span>13/06/2026 — 14/06/2026</span><h3>Night Adventure: An Interactive Theatrical Journey for Children</h3><p>The Ellinikon Experience Park</p></article>
+          <article><img src="./assets/original/info-02.jpg" alt="" /><span>01/05/2026</span><h3>May Day at The Ellinikon Experience Park!</h3><p>The Ellinikon Experience Park</p></article>
+          <article><img src="./assets/original/info-03.jpg" alt="" /><span>30/05/2026 — 01/06/2026</span><h3>Night Adventure at The Ellinikon Experience Park!</h3><p>The Ellinikon Experience Park</p></article>
+        </div>
+      </section>
     </main>
+
+    <footer class="ell-footer" id="footer">
+      <img src="./assets/original/logo-white.svg" alt="The Ellinikon" />
+      <h2>Discover the future<br />of urban living.</h2>
+      <div class="footer-links">
+        <button data-jump="story">ABOUT</button>
+        <button data-jump="map">DISCOVER</button>
+        <button data-jump="news">WHAT'S NEW</button>
+        <button data-jump="top">BACK TO TOP</button>
+      </div>
+      <small>© 2026 THE ELLINIKON · LOCAL PROTOTYPE</small>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./js/project-data.js"></script>
