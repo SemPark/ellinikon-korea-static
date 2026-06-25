@@ -67,3 +67,4 @@
 .destination-heading h2 .slide-line.from-right[data-reveal]{transform:translateX(18vw);transition-delay:.08s}
 .destination-heading h2 .slide-line.in{opacity:1;transform:translateX(0)!important}
 .destination-list{width:420px}
+.news-title h2{font-size:clamp(56px,7.2vw,132px);word-break:keep-all}

@@ -327,6 +327,8 @@ const navigation = header.querySelector("nav");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let lastScroll = window.scrollY;
 let featureIndex = 0;
+const worldCopy = document.querySelector(".world-copy");
+let worldCopyReplayReady = true;
 
 function jumpTo(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -352,6 +354,37 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.18 },
 );
 document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
+
+function replayWorldCopyLines() {
+  if (!worldCopy) return;
+  const lines = worldCopy.querySelectorAll(".slide-line");
+  lines.forEach((line) => line.classList.remove("in"));
+  void worldCopy.offsetWidth;
+  requestAnimationFrame(() => {
+    lines.forEach((line) => line.classList.add("in"));
+  });
+}
+
+function updateWorldCopyReplay(isScrollingDown) {
+  if (!worldCopy) return;
+  const rect = worldCopy.getBoundingClientRect();
+  const outOfView = rect.bottom < 0 || rect.top > window.innerHeight;
+
+  if (outOfView) {
+    worldCopyReplayReady = true;
+    return;
+  }
+
+  if (
+    isScrollingDown &&
+    worldCopyReplayReady &&
+    rect.top < window.innerHeight * 0.72 &&
+    rect.bottom > window.innerHeight * 0.25
+  ) {
+    worldCopyReplayReady = false;
+    replayWorldCopyLines();
+  }
+}
 
 function setDestination(index) {
   document.querySelectorAll("[data-destination]").forEach((button) => {
@@ -423,6 +456,7 @@ if (!reduceMotion) {
 function updatePage() {
   const y = window.scrollY;
   const previous = lastScroll;
+  const isScrollingDown = y > previous + 4;
   const hero = document.querySelector(".ell-hero");
   const city = document.querySelector(".city-intro");
   const featureSlider = document.querySelector(".feature-slider");
@@ -456,10 +490,11 @@ function updatePage() {
     "--map-progress",
     String(1 - Math.pow(1 - mapProgress, 3)),
   );
+  updateWorldCopyReplay(isScrollingDown);
 
   header.classList.toggle("is-solid", y > solidStart);
   if (y <= 0) header.classList.remove("is-hidden");
-  else if (y > previous + 4 && !navigation.classList.contains("open")) header.classList.add("is-hidden");
+  else if (isScrollingDown && !navigation.classList.contains("open")) header.classList.add("is-hidden");
   else if (y < previous - 4) header.classList.remove("is-hidden");
   lastScroll = Math.max(0, y);
 
