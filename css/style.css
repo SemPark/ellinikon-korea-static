@@ -51,12 +51,12 @@
 /* Intro copy motion: alternating horizontal slide-in lines. */
 .world-copy{overflow:hidden}
 .world-copy .slide-line{display:block;will-change:transform,opacity}
-.world-copy .slide-line[data-reveal]{opacity:0;visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s,transform 1.45s cubic-bezier(.16,1,.3,1)}
+.world-copy .slide-line[data-reveal]{opacity:0;visibility:hidden;transition:opacity 1.2s ease,visibility 0s linear 1.2s,transform 2.05s cubic-bezier(.16,1,.3,1)}
 .world-copy .slide-line.from-left[data-reveal]{transform:translateX(-18vw)}
 .world-copy .slide-line.from-right[data-reveal]{transform:translateX(18vw)}
 .world-copy .slide-line.in{opacity:1;visibility:visible;transform:translateX(0);transition-delay:0s}
-.world-copy .slide-line.replaying.from-left{animation:worldCopyFromLeft 1.18s cubic-bezier(.16,1,.3,1) both}
-.world-copy .slide-line.replaying.from-right{animation:worldCopyFromRight 1.18s cubic-bezier(.16,1,.3,1) both}
+.world-copy .slide-line.replaying.from-left{animation:worldCopyFromLeft 1.85s cubic-bezier(.16,1,.3,1) both}
+.world-copy .slide-line.replaying.from-right{animation:worldCopyFromRight 1.85s cubic-bezier(.16,1,.3,1) both}
 .world-lines .slide-line:nth-child(2){transition-delay:.07s}
 .world-lines .slide-line:nth-child(3){transition-delay:.14s}
 .introducing .slide-line:nth-child(2){transition-delay:.09s}
