@@ -328,7 +328,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 let lastScroll = window.scrollY;
 let featureIndex = 0;
 const worldCopy = document.querySelector(".world-copy");
-let worldCopyLastScreenStep = null;
+const worldCopyLines = worldCopy ? Array.from(worldCopy.querySelectorAll(".slide-line")) : [];
 const lenis =
   !reduceMotion && window.Lenis
     ? new Lenis({
@@ -373,52 +373,46 @@ const revealObserver = new IntersectionObserver(
   },
   { threshold: 0.18 },
 );
-document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
+document.querySelectorAll("[data-reveal]").forEach((element) => {
+  if (!element.closest(".world-copy")) revealObserver.observe(element);
+});
 
-function replayWorldCopyLines() {
-  if (!worldCopy) return;
-  const lines = worldCopy.querySelectorAll(".slide-line");
-  lines.forEach((line) => {
-    line.classList.add("in");
-    line.classList.remove("replaying");
-  });
-  void worldCopy.offsetWidth;
+function replayWorldCopyLine(line) {
+  line.classList.add("in");
+  line.classList.remove("replaying");
+  void line.offsetWidth;
   requestAnimationFrame(() => {
-    lines.forEach((line) => line.classList.add("replaying"));
+    line.classList.add("replaying");
   });
 }
-
-function getWorldCopyScreenStep() {
-  if (!worldCopy) return null;
-  const rect = worldCopy.getBoundingClientRect();
-  const visible = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
-  if (!visible) return null;
-  const progress = Math.max(
-    0,
-    Math.min(1, (window.innerHeight * 0.92 - rect.top) / (window.innerHeight + rect.height * 0.52)),
-  );
-  return Math.floor(progress * 12);
-}
-
-window.addEventListener(
-  "wheel",
-  (event) => {
-    if (event.deltaY < 0) worldCopyLastScreenStep = null;
-  },
-  { passive: true },
-);
 
 function updateWorldCopyReplay(isScrollingDown) {
-  if (!worldCopy) return;
+  if (!worldCopyLines.length) return;
+  const triggerY = window.innerHeight * 0.76;
+
   if (!isScrollingDown) {
-    worldCopyLastScreenStep = null;
+    worldCopyLines.forEach((line) => {
+      line.dataset.worldCopyTop = String(line.getBoundingClientRect().top);
+    });
     return;
   }
-  const screenStep = getWorldCopyScreenStep();
-  if (screenStep === null) return;
-  if (screenStep === worldCopyLastScreenStep) return;
-  worldCopyLastScreenStep = screenStep;
-  replayWorldCopyLines();
+
+  let activeLine = null;
+  worldCopyLines.forEach((line) => {
+    const rect = line.getBoundingClientRect();
+    const previousTop = Number(line.dataset.worldCopyTop ?? rect.top);
+    const crossedTrigger = previousTop > triggerY && rect.top <= triggerY;
+    const stillVisible = rect.bottom >= window.innerHeight * 0.12;
+    if (!activeLine && crossedTrigger && stillVisible) {
+      activeLine = line;
+      line.dataset.worldCopyTop = String(rect.top);
+    } else if (!crossedTrigger) {
+      line.dataset.worldCopyTop = String(rect.top);
+    }
+  });
+
+  if (!activeLine) return;
+  replayWorldCopyLine(activeLine);
 }
 
 function setDestination(index) {
