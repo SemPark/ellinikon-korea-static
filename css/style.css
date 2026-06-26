@@ -78,18 +78,4 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-stopped{overflow:hidden}
 
-.ell-footer .footer-contact{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(390px,500px)!important;gap:72px!important;align-items:center!important;margin:92px 0 86px!important}
-.ell-footer .footer-copy h2{margin:0!important;max-width:1040px;font-size:clamp(52px,5.9vw,106px)!important;line-height:.98!important;letter-spacing:-.065em!important;font-weight:300!important;word-break:keep-all;color:#fff}
-.ell-footer .consult-form{display:block!important;width:100%;background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.26)!important;border-radius:24px!important;padding:30px!important;backdrop-filter:blur(18px);box-shadow:0 30px 90px rgba(0,24,38,.24)!important}
-.ell-footer .consult-form strong{display:block!important;font-size:24px!important;line-height:1.2!important;font-weight:600!important;margin:0 0 24px!important;color:#fff}
-.ell-footer .consult-form label{display:block!important;margin:0 0 16px!important}
-.ell-footer .consult-form label>span{display:block!important;margin:0 0 8px!important;font-size:12px!important;font-weight:700!important;letter-spacing:.02em!important;color:rgba(255,255,255,.72)!important}
-.ell-footer .consult-form input[type="text"],.ell-footer .consult-form input[type="tel"]{appearance:none!important;display:block!important;width:100%!important;height:56px!important;border:1px solid rgba(255,255,255,.26)!important;border-radius:14px!important;background:rgba(255,255,255,.12)!important;color:#fff!important;padding:0 16px!important;font:inherit!important;outline:0!important}
-.ell-footer .consult-form input::placeholder{color:rgba(255,255,255,.46)!important}
-.ell-footer .consult-form input:focus{border-color:#fff!important;background:rgba(255,255,255,.18)!important}
-.ell-footer .privacy-check{display:flex!important;align-items:flex-start!important;gap:10px!important;margin:4px 0 23px!important}
-.ell-footer .privacy-check input{appearance:auto!important;width:18px!important;height:18px!important;margin:2px 0 0!important;accent-color:var(--lime)!important;flex:none!important}
-.ell-footer .privacy-check span{margin:0!important;font-size:12px!important;line-height:1.5!important;font-weight:500!important;color:rgba(255,255,255,.72)!important}
-.ell-footer .consult-form button{appearance:none!important;display:block!important;width:100%!important;height:58px!important;border:0!important;border-radius:15px!important;background:#fff!important;color:var(--deep)!important;font-weight:800!important;cursor:pointer!important;box-shadow:0 14px 36px rgba(0,24,38,.2)!important}
-.ell-footer .consult-form button:hover{background:var(--lime)!important}
-@media(max-width:900px){.ell-footer .footer-contact{grid-template-columns:1fr!important;gap:34px!important;margin:65px 0!important}.ell-footer .footer-copy h2{font-size:13vw!important}.ell-footer .consult-form{padding:22px!important;border-radius:18px!important}}
+.ell-footer{min-height:auto!important}
