@@ -328,6 +328,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 let lastScroll = window.scrollY;
 let featureIndex = 0;
 const worldCopy = document.querySelector(".world-copy");
+let worldCopyPendingReplay = false;
 let worldCopyLastReplay = 0;
 const lenis =
   !reduceMotion && window.Lenis
@@ -385,16 +386,38 @@ function replayWorldCopyLines() {
   });
 }
 
-function updateWorldCopyReplay(isScrollingDown) {
+function isWorldCopyVisible() {
   if (!worldCopy) return;
   const rect = worldCopy.getBoundingClientRect();
-  const visible = rect.top < window.innerHeight * 0.58 && rect.bottom > window.innerHeight * 0.38;
-  const now = performance.now();
+  return rect.top < window.innerHeight * 0.86 && rect.bottom > window.innerHeight * 0.14;
+}
 
-  if (isScrollingDown && visible && now - worldCopyLastReplay > 1500) {
-    worldCopyLastReplay = now;
-    replayWorldCopyLines();
+function requestWorldCopyReplay() {
+  if (!isWorldCopyVisible()) return;
+  const now = performance.now();
+  if (now - worldCopyLastReplay < 820) return;
+  worldCopyLastReplay = now;
+  replayWorldCopyLines();
+}
+
+window.addEventListener(
+  "wheel",
+  (event) => {
+    if (event.deltaY > 0) worldCopyPendingReplay = true;
+  },
+  { passive: true },
+);
+
+function updateWorldCopyReplay(isScrollingDown) {
+  if (!worldCopy) return;
+  if (!isScrollingDown) {
+    worldCopyPendingReplay = false;
+    return;
   }
+  if (!worldCopyPendingReplay) return;
+  if (!isWorldCopyVisible()) return;
+  worldCopyPendingReplay = false;
+  requestWorldCopyReplay();
 }
 
 function setDestination(index) {
