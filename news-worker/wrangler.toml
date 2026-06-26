@@ -1,0 +1,11 @@
+name = "customer-news-board"
+main = "src/index.js"
+compatibility_date = "2026-06-16"
+
+[[kv_namespaces]]
+binding = "NEWS_KV"
+id = "f7f4097ac9634f279031b92fc369e8e6"
+preview_id = "3a0b27165d6043c3be3522cae6c63fc6"
+
+[observability]
+enabled = true
