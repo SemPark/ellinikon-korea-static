@@ -328,8 +328,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 let lastScroll = window.scrollY;
 let featureIndex = 0;
 const worldCopy = document.querySelector(".world-copy");
-let worldCopyPendingReplay = false;
-let worldCopyLastReplay = 0;
+let worldCopyLastScreenStep = null;
 const lenis =
   !reduceMotion && window.Lenis
     ? new Lenis({
@@ -379,31 +378,32 @@ document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.o
 function replayWorldCopyLines() {
   if (!worldCopy) return;
   const lines = worldCopy.querySelectorAll(".slide-line");
-  lines.forEach((line) => line.classList.remove("in"));
+  lines.forEach((line) => {
+    line.classList.add("in");
+    line.classList.remove("replaying");
+  });
   void worldCopy.offsetWidth;
   requestAnimationFrame(() => {
-    lines.forEach((line) => line.classList.add("in"));
+    lines.forEach((line) => line.classList.add("replaying"));
   });
 }
 
-function isWorldCopyVisible() {
-  if (!worldCopy) return;
+function getWorldCopyScreenStep() {
+  if (!worldCopy) return null;
   const rect = worldCopy.getBoundingClientRect();
-  return rect.top < window.innerHeight * 0.86 && rect.bottom > window.innerHeight * 0.14;
-}
-
-function requestWorldCopyReplay() {
-  if (!isWorldCopyVisible()) return;
-  const now = performance.now();
-  if (now - worldCopyLastReplay < 820) return;
-  worldCopyLastReplay = now;
-  replayWorldCopyLines();
+  const visible = rect.top < window.innerHeight * 0.92 && rect.bottom > window.innerHeight * 0.08;
+  if (!visible) return null;
+  const progress = Math.max(
+    0,
+    Math.min(1, (window.innerHeight * 0.92 - rect.top) / (window.innerHeight + rect.height * 0.52)),
+  );
+  return Math.floor(progress * 12);
 }
 
 window.addEventListener(
   "wheel",
   (event) => {
-    if (event.deltaY > 0) worldCopyPendingReplay = true;
+    if (event.deltaY < 0) worldCopyLastScreenStep = null;
   },
   { passive: true },
 );
@@ -411,13 +411,14 @@ window.addEventListener(
 function updateWorldCopyReplay(isScrollingDown) {
   if (!worldCopy) return;
   if (!isScrollingDown) {
-    worldCopyPendingReplay = false;
+    worldCopyLastScreenStep = null;
     return;
   }
-  if (!worldCopyPendingReplay) return;
-  if (!isWorldCopyVisible()) return;
-  worldCopyPendingReplay = false;
-  requestWorldCopyReplay();
+  const screenStep = getWorldCopyScreenStep();
+  if (screenStep === null) return;
+  if (screenStep === worldCopyLastScreenStep) return;
+  worldCopyLastScreenStep = screenStep;
+  replayWorldCopyLines();
 }
 
 function setDestination(index) {
