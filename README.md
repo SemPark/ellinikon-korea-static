@@ -1,6 +1,10 @@
 # THE IN PARTNERS — One Page Website
 
-히어로 영상, 스크롤 애니메이션, 이미지 레일, 콘텐츠 섹션과 대한민국 3D 프로젝트 지도를 포함한 정적 원페이지 웹사이트입니다.
+히어로 영상, 스크롤 애니메이션, 대한민국 3D 프로젝트 지도와 뉴스 섹션을 포함한 정적 원페이지 웹사이트입니다.
+
+- GitHub 저장소: `SemPark/THE-IN-PARTNERS`
+- Pages 주소: `https://sempark.github.io/THE-IN-PARTNERS/`
+- 관리자 주소: `https://sempark.github.io/THE-IN-PARTNERS/admin.html`
 
 ## 구조
 
@@ -32,7 +36,7 @@ python3 -m http.server 8000
 
 ## 배포
 
-- GitHub Pages: 저장소 루트를 Pages 소스로 지정합니다.
+- GitHub Pages: GitHub Actions 워크플로로 배포합니다.
 - 모든 내부 파일과 이미지 경로는 상대경로로 연결되어 있습니다.
 
 ## 구현 원칙
