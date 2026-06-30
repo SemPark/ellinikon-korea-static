@@ -31,8 +31,9 @@ async function loadManagedNews() {
       return;
     }
 
+    const displayNews = buildNewsGridItems(news.map(normalizeNewsItem));
     managedNewsGrid.innerHTML = "";
-    news.forEach((item) => managedNewsGrid.appendChild(renderManagedNewsCard(normalizeNewsItem(item))));
+    displayNews.forEach((item) => managedNewsGrid.appendChild(renderManagedNewsCard(item)));
   } catch (error) {
     newsCount.textContent = "0";
     managedNewsGrid.innerHTML = '<div class="news-error">뉴스 데이터를 불러오지 못했습니다.</div>';
@@ -46,7 +47,7 @@ function renderManagedNewsCard(item) {
   card.addEventListener("click", () => openManagedArticle(item));
 
   card.innerHTML = `
-    <div class="managed-news-thumb">${renderManagedImage(item.image)}</div>
+    <div class="managed-news-thumb"><div class="managed-news-fallback">NEWS</div></div>
     <div class="managed-news-body">
       <div class="news-meta">
         <span class="news-source">${escapeNewsHtml(item.sourceName)}</span>
@@ -113,6 +114,11 @@ function normalizeNewsItem(item) {
     date: item.date || "",
     paragraphs: item.paragraphs || [],
   };
+}
+
+function buildNewsGridItems(news) {
+  if (news.length >= 6) return news;
+  return Array.from({ length: 6 }, (_, index) => news[index % news.length]);
 }
 
 function hostname(value) {
