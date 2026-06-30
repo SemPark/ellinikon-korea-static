@@ -79,3 +79,23 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-stopped{overflow:hidden}
 
 .ell-footer{min-height:auto!important}
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+body{font-family:Pretendard,Manrope,Arial,sans-serif!important}
+.ell-header{height:128px!important;padding:0 70px!important;gap:74px!important;background:transparent!important;color:#fff!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.ell-logo{width:112px!important;background:transparent!important;padding:0!important;box-shadow:none!important}
+.ell-logo img{width:100%!important;filter:grayscale(1) brightness(0) invert(1)!important}
+.ell-header nav{gap:72px!important}
+.ell-header nav button,.header-tools button{font-size:26px!important;font-weight:900!important;letter-spacing:-.035em!important;text-shadow:0 2px 18px rgba(0,0,0,.35)!important}
+.header-tools{gap:0!important}
+.header-tools .contact{background:transparent!important;color:#fff!important;padding:0!important;box-shadow:none!important}
+.ell-hero{height:100vh!important;min-height:720px!important;background:#111!important}
+.hero-sticky{height:100vh!important;min-height:720px!important;background:#111!important}
+.ell-hero video{filter:grayscale(1)!important}
+.hero-shade{background:linear-gradient(90deg,rgba(12,13,26,.42),rgba(12,13,26,.16)),rgba(0,0,0,.28)!important}
+.hero-primary,.hero-secondary,.watch{display:none!important}
+.hero-title{position:absolute;z-index:4;left:60px;right:60px;bottom:28px;color:#fff;font-weight:900;letter-spacing:.01em}
+.hero-title-row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 150px;align-items:end;gap:24px;border-bottom:2px solid rgba(255,255,255,.9);padding:0 0 14px;margin-top:12px}
+.hero-title-row span{font-size:clamp(86px,9.3vw,178px);line-height:.86}
+.hero-title-row b{padding-bottom:12px;text-align:right;font-size:24px;line-height:1;font-weight:900;letter-spacing:-.04em}
+@media(max-width:900px){.ell-header{height:88px!important;padding:0 22px!important;gap:24px!important}.ell-logo{width:66px!important}.ell-header nav{gap:22px!important}.ell-header nav button,.header-tools button{font-size:13px!important}.hero-title{left:24px;right:24px;bottom:24px}.hero-title-row{grid-template-columns:1fr 56px;padding-bottom:9px}.hero-title-row span{font-size:clamp(48px,17vw,96px)}.hero-title-row b{font-size:14px;padding-bottom:6px}}
