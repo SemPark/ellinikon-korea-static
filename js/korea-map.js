@@ -397,7 +397,7 @@ function updateWorldCopyLines(isScrollingDown, isScrollingUp) {
     const enteringFromBottom = rect.top <= revealLine && rect.bottom >= 0;
     const belowViewport = rect.top > resetLine;
 
-    if (enteringFromBottom && !line.classList.contains("in")) {
+    if (isScrollingDown && enteringFromBottom && !line.classList.contains("in")) {
       replayWorldCopyLine(line);
     } else if (isScrollingUp && belowViewport && line.classList.contains("in")) {
       line.classList.remove("in", "replaying");
