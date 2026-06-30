@@ -157,26 +157,26 @@ body{font-family:Pretendard,Manrope,Arial,sans-serif!important}
 @media(max-width:900px){.ell-footer#footer{min-height:300px;padding:105px 28px 0;gap:20px}.ell-footer#footer>img{width:78px}.ell-footer#footer small{font-size:13px;letter-spacing:.035em}}
 
 /* 2026-06-30 map reference layout */
-.korea-map-section#map{height:100vh;min-height:clamp(780px,56vw,960px);background:#393080;overflow:hidden}
-.korea-map-section#map .map-canvas{container-type:inline-size;position:absolute;left:-10vw;top:42px;right:auto;bottom:auto;width:min(1470px,68vw);height:auto;aspect-ratio:1754/1241;transform:none;transition:none;pointer-events:auto}
+.korea-map-section#map{height:100vh;min-height:clamp(820px,52vw,960px);background:#393080;overflow:hidden}
+.korea-map-section#map .map-canvas{container-type:inline-size;position:absolute;left:7vw;top:34px;right:auto;bottom:auto;width:min(780px,40.5vw);height:auto;aspect-ratio:1754/1241;transform:none;transition:none;pointer-events:auto}
 .korea-map-section#map.has-selection .map-canvas{--map-shift:0vw}
 .korea-outline-map{display:block;width:100%;height:100%;object-fit:contain;user-select:none;pointer-events:none}
 .map-pin-layer{position:absolute;z-index:2;left:24.4%;top:6.04%;width:51.2%;height:87.84%}
 .map-static-pin{position:absolute;display:grid;place-items:center;width:clamp(14px,2.9cqw,24px);height:clamp(14px,2.9cqw,24px);padding:0;border:0;border-radius:50%;background:#ffd08b;transform:translate(-50%,-50%);cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.28),0 4px 7px rgba(0,0,0,.14);transition:transform .24s ease,background .18s ease,box-shadow .18s ease}
 .map-static-pin img{display:none}
 .map-static-pin:hover{transform:translate(-50%,-50%) scale(1.08)}
-.map-static-pin.is-active{width:clamp(26px,4.6cqw,50px);height:clamp(40px,7cqw,76px);z-index:3;border-radius:0;background:transparent;box-shadow:none;transform:translate(-50%,-92%);animation:selectedPinFloat 2.7s ease-in-out infinite}
+.map-static-pin.is-active{width:clamp(10px,1.8cqw,16px);height:clamp(15px,2.75cqw,24px);z-index:3;border-radius:0;background:transparent;box-shadow:none;transform:translate(-50%,-84%);animation:selectedPinFloat 2.7s ease-in-out infinite}
 .map-static-pin.is-active img{display:block;width:100%;height:100%;object-fit:contain}
-.map-static-pin.is-active:hover{transform:translate(-50%,-92%) scale(1.04)}
-.map-card#projectPanel{position:absolute;z-index:5;right:4vw;top:58px;width:min(740px,37vw);background:transparent;box-shadow:none;opacity:1;pointer-events:auto;transform:none;transition:opacity .25s ease}
+.map-static-pin.is-active:hover{transform:translate(-50%,-84%) scale(1.04)}
+.map-card#projectPanel{position:absolute;z-index:5;right:7vw;top:29vh;width:min(780px,40.5vw);background:transparent;box-shadow:none;opacity:1;pointer-events:auto;transform:none;transition:opacity .25s ease}
 .map-card#projectPanel.is-active{transform:none}
 .map-card#projectPanel>img{display:block;width:100%;height:auto;aspect-ratio:1215/608;object-fit:contain;box-shadow:0 14px 30px rgba(0,0,0,.22)}
 .map-card#projectPanel>div{display:none}
-.map-pills#projectPills{position:absolute;z-index:6;left:50%;right:auto;top:auto;bottom:28px;width:min(1160px,76vw);display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 16px;transform:translateX(-50%);pointer-events:none}
-.map-pills#projectPills button{min-height:64px;padding:0 38px;border:5px solid rgba(255,255,255,.95);border-radius:999px;background:transparent;color:#fff;box-shadow:none;font-size:30px;line-height:1;font-weight:900;letter-spacing:-.045em;white-space:nowrap;pointer-events:auto;transition:background .18s ease,color .18s ease,opacity .18s ease}
+.map-pills#projectPills{position:absolute;z-index:6;left:50%;right:auto;top:auto;bottom:26px;width:min(1280px,64vw);display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 18px;transform:translateX(-50%);pointer-events:none}
+.map-pills#projectPills button{min-height:56px;padding:0 34px;border:5px solid rgba(255,255,255,.95);border-radius:999px;background:transparent;color:#fff;box-shadow:none;font-size:27px;line-height:1;font-weight:900;letter-spacing:-.045em;white-space:nowrap;pointer-events:auto;transition:background .18s ease,color .18s ease,opacity .18s ease}
 .map-pills#projectPills button.active{background:#fff;color:#aaa5bc}
 .map-pills#projectPills button:hover{background:rgba(255,255,255,.16)}
 .map-pills#projectPills button.active:hover{background:#fff}
-@keyframes selectedPinFloat{0%,100%{transform:translate(-50%,-92%)}50%{transform:translate(-50%,calc(-92% - 8px))}}
-@media(max-width:1180px){.korea-map-section#map{min-height:820px}.korea-map-section#map .map-canvas{left:-9vw;width:min(920px,66vw)}.map-card#projectPanel{right:3vw;top:86px;width:39vw}.map-pills#projectPills{width:88vw}.map-pills#projectPills button{font-size:24px;min-height:56px;padding:0 28px;border-width:4px}}
+@keyframes selectedPinFloat{0%,100%{transform:translate(-50%,-84%)}50%{transform:translate(-50%,calc(-84% - 5px))}}
+@media(max-width:1180px){.korea-map-section#map{min-height:820px}.korea-map-section#map .map-canvas{left:5vw;width:42vw}.map-card#projectPanel{right:5vw;top:32vh;width:42vw}.map-pills#projectPills{width:88vw}.map-pills#projectPills button{font-size:24px;min-height:52px;padding:0 28px;border-width:4px}}
 @media(max-width:900px){.korea-map-section#map{height:auto;min-height:0;padding:86px 18px 46px}.korea-map-section#map .map-canvas{position:relative;left:auto;top:auto;width:min(96vw,680px);margin:0 auto 28px;aspect-ratio:1754/1241}.map-card#projectPanel{position:relative;right:auto;top:auto;width:100%;margin:0 auto 30px}.map-card#projectPanel>img{box-shadow:0 10px 24px rgba(0,0,0,.18)}.map-pills#projectPills{position:relative;left:auto;bottom:auto;width:100%;transform:none;gap:10px;overflow:visible}.map-pills#projectPills button{min-height:40px;padding:0 16px;border-width:3px;font-size:15px}}
