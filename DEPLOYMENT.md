@@ -4,7 +4,7 @@ This repository deploys the static site through GitHub Pages.
 
 ## Site
 
-`Deploy site to GitHub Pages` publishes the website from `main`.
+GitHub Pages publishes the website from the root of the `main` branch.
 
 The published artifact includes:
 
