@@ -144,3 +144,22 @@ body{font-family:Pretendard,Manrope,Arial,sans-serif!important}
 .portfolio-marquee img{height:clamp(238px,17vw,292px)!important;width:auto!important;max-width:none!important;display:block!important;flex:0 0 auto!important;margin:0!important;padding:0!important;object-fit:contain!important}
 .portfolio-marquee.top>div{animation:portfolioLeftClean 28s linear infinite!important}.portfolio-marquee.bottom>div{animation:portfolioRightClean 28s linear infinite!important}
 @keyframes portfolioLeftClean{from{transform:translateX(0)}to{transform:translateX(-50%)}}@keyframes portfolioRightClean{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* 2026-06-30 reset text section only */
+.world-copy#business{position:relative!important;min-height:100vh!important;height:100vh!important;padding:0!important;overflow:hidden!important;background:linear-gradient(180deg,#2f2879 0%,#3f378a 58%,#5b5798 100%)!important;color:#fff!important}
+.world-copy#business .strategy-lines{position:relative!important;display:block!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;font-family:Pretendard,Arial,sans-serif!important}
+.world-copy#business .strategy-block{position:absolute!important;display:block!important;margin:0!important;padding:0!important;color:#fff!important;opacity:1!important;visibility:visible!important;line-height:1!important;overflow:visible!important;box-sizing:border-box!important}
+.world-copy#business .strategy-human{top:8.5vh!important;left:2.4vw!important;width:42vw!important;text-align:left!important}
+.world-copy#business .strategy-trust{top:39vh!important;left:23vw!important;width:74vw!important;text-align:left!important}
+.world-copy#business .strategy-success{left:2.4vw!important;bottom:7.5vh!important;width:62vw!important;text-align:left!important}
+.world-copy#business .strategy-block b,.world-copy#business .strategy-block span{display:block!important;position:relative!important;color:#fff!important;opacity:0!important;visibility:visible!important;z-index:5!important;margin:0!important;padding:0!important;letter-spacing:0!important;font-weight:900!important;text-shadow:none!important;mix-blend-mode:normal!important;white-space:nowrap!important;transition:none!important;will-change:transform,opacity!important}
+.world-copy#business .strategy-block b{font-size:clamp(54px,7.2vw,132px)!important;line-height:.86!important}
+.world-copy#business .strategy-block span{font-size:clamp(14px,1.25vw,24px)!important;line-height:1.18!important}
+.world-copy#business .strategy-human span{margin-left:15.4vw!important;text-align:left!important}
+.world-copy#business .strategy-trust span{margin-left:58vw!important;text-align:left!important}
+.world-copy#business .strategy-success span{margin-left:.25vw!important;text-align:left!important}
+.world-copy#business .slide-line.from-left{transform:translateX(-16vw)!important}.world-copy#business .slide-line.from-right{transform:translateX(16vw)!important}
+.world-copy#business .slide-line.in{opacity:1!important;visibility:visible!important}.world-copy#business .slide-line.in:not(.replaying){transform:translateX(0)!important}
+.world-copy#business .slide-line.replaying.from-left{animation:textResetLeft 1.25s cubic-bezier(.16,1,.3,1) both!important}.world-copy#business .slide-line.replaying.from-right{animation:textResetRight 1.25s cubic-bezier(.16,1,.3,1) both!important}
+@keyframes textResetLeft{0%{opacity:0;transform:translateX(-16vw)}100%{opacity:1;transform:translateX(0)}}@keyframes textResetRight{0%{opacity:0;transform:translateX(16vw)}100%{opacity:1;transform:translateX(0)}}
+@media(max-width:760px){.world-copy#business .strategy-human{top:72px!important;left:18px!important;width:90vw!important}.world-copy#business .strategy-trust{top:38vh!important;left:18px!important;width:94vw!important}.world-copy#business .strategy-success{left:18px!important;bottom:76px!important;width:94vw!important}.world-copy#business .strategy-block b{font-size:clamp(48px,16vw,78px)!important}.world-copy#business .strategy-block span{font-size:15px!important}.world-copy#business .strategy-human span,.world-copy#business .strategy-trust span,.world-copy#business .strategy-success span{margin-left:0!important}}
